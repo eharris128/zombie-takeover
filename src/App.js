@@ -52,7 +52,7 @@ class App extends Component {
             <tbody>{walkerData}</tbody>
           </table>
         </div>
-        <ZombieMap />
+        <ZombieMap zombieData={zombies}/>
       </div>
     );
   }
