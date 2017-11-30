@@ -1,0 +1,76 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 0.75s linear;
+  height: 80px;
+  animation-iteration-count: 3;
+}
+
+.App-logo:hover {
+  animation: App-logo-spin infinite 0.75s linear;
+  height: 80px;
+  animation-iteration-count: 1;
+}
+
+.App-header {
+  background-color: #222;
+
+  /*border: 3px solid rgba(255,188,51,1);*/
+  height: 150px;
+  padding: 20px;
+  color: #fff;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.App-summary {
+  max-width: 400px;
+  text-align: justify;
+  margin: 0 auto;
+  margin-top: 30px;
+  font-size: 16px;
+  letter-spacing: 1.1;
+}
+
+@keyframes App-logo-spin {
+  0% {
+    left: 0%;
+    transform: rotate(0deg);
+  }
+  50% {
+    left: 100%;
+    transform: rotate(0deg);
+  }
+  52% {
+    transform: rotate(90deg);
+  }
+  70% {
+    transform: rotate(180deg);
+  }
+  100% {
+    left: 50%;
+    transform: rotate(360deg);
+  }
+}
+
+.zombie-img {
+  margin-top: 25px;
+  max-width: 275px;
+  border-radius: 15px;
+}
+.dashboard-img {
+  width: 100%;
+  border-radius: 15px;
+}
+.zombie-table-img {
+  max-width: 720px;
+  border-radius: 15px;
+}
