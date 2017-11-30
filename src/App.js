@@ -39,7 +39,6 @@ export default class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Breaking News!</h1>
         </header>
-        <div />
         <div>
           <table>
             <thead>
@@ -53,12 +52,6 @@ export default class App extends Component {
             <tbody>{walkerData}</tbody>
           </table>
         </div>
-<<<<<<< HEAD
-        <div id="map">
-          <ZombieMap zombieData={zombies} />
-        </div>
-=======
->>>>>>> feature/map
       </div>
     );
   }
