@@ -1,20 +1,24 @@
 import React from "react";
 import mapboxgl from "mapbox-gl";
-import ZombieTable from "./ZombieTable";
+import ZombieTable from "./components/ZombieTable/ZombieTable.js";
 import "./App.css";
-import faker from 'faker';
-import SearchForm from "./SearchForm.js";
+import faker from "faker";
+import SearchForm from "./components/SearchForm/SearchForm.js";
+import * as actions from "./redux/actions";
 import walkers from "./data/walkers";
+
+import { connect } from "react-redux";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA";
 
-export default class App extends React.Component {
+export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       zombieData: null,
-      flag: false
+      flag: false,
+      personArray: null
     };
   }
 
@@ -23,45 +27,54 @@ export default class App extends React.Component {
     return completeName;
   }
 
-  populateMap = personArray => { 
-    console.log('Data array in map function: ', personArray);
+  populateMap = () => {
     const boundThis = this;
+    // work with the filtered array for the search function
+    // let personArray = this.props.personArray.personArray;
+    let personArray = walkers;
+    if (personArray === undefined) {
+      return;
+    }
     if (!this.state.flag) {
       setTimeout(function() {
         boundThis.setState({ flag: true });
-        boundThis.setState({ zombieData: personArray });
         let updatedZombieData = [];
-        for (let i = 0; i < boundThis.state.zombieData.length; i++) {
+        for (let i = 0; i < personArray.length; i++) {
           updatedZombieData.push({
             type: "Feature",
             geometry: {
               type: "Point",
-              coordinates: [
-                boundThis.state.zombieData[i].longitude,
-                boundThis.state.zombieData[i].latitude
-              ]
+              coordinates: [personArray[i].longitude, personArray[i].latitude]
             },
             properties: {
-              state: boundThis.state.zombieData[i].state,
-              description: boundThis.state.zombieData[i].company.toLowerCase(),
+              state: personArray[i].state,
+              description: personArray[i].company.toLowerCase(),
               name: boundThis.concatName(
-                boundThis.state.zombieData[i].name.first,
-                boundThis.state.zombieData[i].name.last
+                personArray[i].name.first,
+                personArray[i].name.last
               ),
               image: faker.image.avatar(),
-              age: boundThis.state.zombieData[i].age
+              age: personArray[i].age
             }
           });
         }
         boundThis.createMarkerData(updatedZombieData);
-      }, 0.500);
+      }, 0.75);
     }
   };
 
-  updateSearchQuery = searchQueryData => {
-    this.setState({flag: false})
-    console.log('Search Query: ', searchQueryData);
-    this.populateMap(searchQueryData);
+  componentWillMount() {
+    let zombies = [];
+    for (let i = 0; i < walkers.length; i++) {
+      if (walkers[i].state === "walker") {
+        zombies.push(walkers[i]);
+      }
+    }
+    this.props.dispatch(
+      actions.initializePersonArray({
+        personArray: zombies
+      })
+    );
   }
 
   createMarkerData = walkerArray => {
@@ -80,8 +93,23 @@ export default class App extends React.Component {
     });
 
     geojson.features.forEach(marker => {
-      var el = document.createElement("div");
-      el.className = "marker";
+      const el = document.createElement("div");
+      if (marker.properties.state === "dead") {
+        el.className = "marker dead";
+      }
+
+      if (marker.properties.state === "walker") {
+        el.className = "marker walker";
+      }
+
+      if (marker.properties.state === "bitten") {
+        el.className = "marker bitten";
+      }
+
+      if (marker.properties.state === "human") {
+        el.className = "marker human";
+      }
+
       new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
         .setPopup(
@@ -89,8 +117,9 @@ export default class App extends React.Component {
             "<h2>" +
               marker.properties.name +
               "</h2>" +
-              `<img src=${marker.properties.image} alt="Generated Avatar">`             
-              + "<p>Age: " + marker.properties.age +
+              `<img src=${marker.properties.image} alt="Generated Avatar">` +
+              "<p>Age: " +
+              marker.properties.age +
               "</p><h3>State: " +
               marker.properties.state +
               "</h3><p>Company: " +
@@ -104,13 +133,14 @@ export default class App extends React.Component {
   };
 
   render() {
+    this.populateMap();
     const style = {
       width: "70%"
     };
     return (
       <div>
-        <ZombieTable callbackFromParent={this.populateMap} />
-        <SearchForm sendInfectionStatus={this.updateSearchQuery}/>
+        <ZombieTable />
+        <SearchForm />
         <div className="container">
           <div
             style={style}
@@ -123,3 +153,11 @@ export default class App extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  personArray: state.personArray,
+  queryType: state.queryType,
+  initialRunComplete: state.initialRunComplete
+});
+
+export default connect(mapStateToProps)(App);
