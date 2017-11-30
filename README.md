@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-## [Zombie Dashboard] (https://sleepy-earth-89207.herokuapp.com/)
+## [Zombie Dashboard](https://sleepy-earth-89207.herokuapp.com/)
 
 ## Quick Overview
 
