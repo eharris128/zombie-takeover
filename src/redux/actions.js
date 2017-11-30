@@ -1,5 +1,3 @@
-// updateQueryType
-
 export const UPDATE_QUERY_TYPE = 'UPDATE_QUERY_TYPE';
 export const updateQueryType = queryType => ({type: UPDATE_QUERY_TYPE, queryType});
 
@@ -8,6 +6,3 @@ export const updatePersonArray = personArray => ({type: UPDATE_PERSON_ARRAY, per
 
 export const INITIALIZE_PERSON_ARRAY = 'INITIALIZE_PERSON_ARRAY'
 export const initializePersonArray = zombieArray => ({type: INITIALIZE_PERSON_ARRAY, zombieArray});
-
-export const FETCH_PERSON_DATA = 'FETCH_PERSON_DATA';
-export const fetchPersonData = () => ({type: FETCH_PERSON_DATA});

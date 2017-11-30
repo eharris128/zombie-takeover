@@ -31,7 +31,7 @@ export class SearchForm extends React.Component {
         <form>
           <fieldset>
             <label>
-              Search Map by:
+              Search map by:
               <select
                 defaultValue="none"
                 onChange={event => this.onChangeDropDown(event)}

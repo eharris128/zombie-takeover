@@ -82,7 +82,7 @@ td {
 }
 
 table {
-  margin: 2rem auto 2rem auto;
+  margin: 1rem auto 2rem auto;
   text-align: left;
   border-collapse: separate;
   border-spacing: 0 5px;
@@ -139,4 +139,13 @@ tr:nth-child(even) {
 
 .name {
   width: 250px;
+}
+
+h2 {
+  margin-top: 3rem;
+  font-size: 140%;
+}
+
+p {
+  font-size: 115%;
 }

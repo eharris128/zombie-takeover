@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import logo from "../../warning.svg";
 import "./ZombieTable.css";
 import walkers from "../../data/walkers";
-import * as actions from "../../redux/actions";
 
 import { connect } from "react-redux";
 
@@ -14,12 +13,19 @@ export class ZombieTable extends Component {
 
   render() {
     let trimmedData = [];
-    for (let j = 0; j < 10; j++) {
-      trimmedData.push(walkers[j]);
+    let counter = 0;
+    while (counter < 10) {
+      trimmedData.push(walkers[counter]);
+      // for random individual approach:
+      // trimmedData.push(walkers[Math.floor(Math.random() * 100)])
+      counter++;
     }
+
     const walkerData = trimmedData.map((item, index) => (
       <tr className="table-body-row" key={index}>
-        <td className="name">{this.concatName(item.name.first, item.name.last)}</td>
+        <td className="name">
+          {this.concatName(item.name.first, item.name.last)}
+        </td>
         <td className={item.state}>{item.state}</td>
         <td className="age">{item.age}</td>
         <td className="company">{item.company.toLowerCase()}</td>
@@ -38,6 +44,13 @@ export class ZombieTable extends Component {
           <h1 className="App-title">Zombie Outbreak Tracker</h1>
         </header>
         <div className="table-container">
+          <h2>
+            Key information on 10 individuals involved in zombie outbreak.
+          </h2>
+          <p>
+            Please see the map for more deails on all individuals involved in
+            the pandemic.
+          </p>
           <table>
             <thead>
               <tr>

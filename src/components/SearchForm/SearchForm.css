@@ -11,3 +11,12 @@ fieldset {
 .form-container, p {
   margin-top: 1rem;
 }
+
+label {
+  font-size: 115%;
+}
+
+select {
+  margin-left: 0.5rem;
+  font-size: 105%;
+}
