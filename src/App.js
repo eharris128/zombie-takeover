@@ -14,10 +14,10 @@ class App extends Component {
     let zombies = [];
     for (let i = 0; i < walkers.length; i++) {
       if (walkers[i].state === "walker") {
-        zombies.push(walkers[i])
+        zombies.push(walkers[i]);
       }
     }
-   console.log("Example data point: ", zombies[0]);
+    console.log("Example data point: ", zombies[0]);
     let trimmedData = [];
     for (let j = 0; j < 10; j++) {
       trimmedData.push(walkers[j]);
@@ -37,8 +37,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Breaking News!</h1>
         </header>
-        <div>
-        </div>
+        <div />
         <div>
           <table>
             <thead>
@@ -52,7 +51,9 @@ class App extends Component {
             <tbody>{walkerData}</tbody>
           </table>
         </div>
-        <ZombieMap zombieData={zombies}/>
+        <div id="map">
+          <ZombieMap zombieData={zombies} />
+        </div>
       </div>
     );
   }
