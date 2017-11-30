@@ -44,11 +44,11 @@ export class ZombieTable extends Component {
           <h1 className="App-title">Zombie Outbreak Tracker</h1>
         </header>
         <div className="table-container">
-          <h2>
+          <h2 className="info">
             Key information on 10 individuals involved in zombie outbreak.
           </h2>
           <p>
-            Please see the map for more deails on all individuals involved in
+            Please see the map for more details on all individuals involved in
             the pandemic.
           </p>
           <table>

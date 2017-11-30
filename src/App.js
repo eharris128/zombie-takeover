@@ -137,7 +137,7 @@ export class App extends React.Component {
       new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
         .setPopup(
-          new mapboxgl.Popup({ offset: 25 }).setHTML(
+          new mapboxgl.Popup({ offset: 55 }).setHTML(
             "<h2>" +
               marker.properties.name +
               "</h2>" +

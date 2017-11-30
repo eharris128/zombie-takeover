@@ -141,7 +141,7 @@ tr:nth-child(even) {
   width: 250px;
 }
 
-h2 {
+.info {
   margin-top: 3rem;
   font-size: 140%;
 }
