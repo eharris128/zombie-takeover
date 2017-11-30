@@ -29,8 +29,6 @@ export class App extends React.Component {
 
   populateMap = () => {
     const boundThis = this;
-    // work with the filtered array for the search function
-    // let personArray = this.props.personArray.personArray;
     let personArray = walkers;
     if (personArray === undefined) {
       return;
@@ -61,13 +59,39 @@ export class App extends React.Component {
         boundThis.createMarkerData(updatedZombieData);
       }, 0.75);
     }
+    if (this.state.flag) {
+      this.filterMarkers();
+    }
   };
+
+  filterMarkers() {
+    let onlyDisplay = this.props.queryType.queryType;
+    const elements = document
+      .getElementById("map")
+      .getElementsByClassName(`marker`);
+    if (elements.length > 0) {
+      for (let j = 0; j < elements.length; j++ ) {
+        elements[j].classList.remove("hidden")
+      }
+    }
+    if (onlyDisplay === 'none') {
+     for (let k = 0; k < elements.length; k++ ) {
+        elements[k].classList.remove("hidden")
+      }
+      return;
+    }
+    for (let i = 0; i < elements.length; i++) {
+      if (elements[i].className.includes(onlyDisplay) === false) {
+        elements[i].className += " hidden";
+      }
+    }
+  }
 
   componentWillMount() {
     let zombies = [];
-    for (let i = 0; i < walkers.length; i++) {
-      if (walkers[i].state === "walker") {
-        zombies.push(walkers[i]);
+    for (let x = 0; x < walkers.length; x++) {
+      if (walkers[x].state === "walker") {
+        zombies.push(walkers[x]);
       }
     }
     this.props.dispatch(
@@ -156,8 +180,7 @@ export class App extends React.Component {
 
 const mapStateToProps = state => ({
   personArray: state.personArray,
-  queryType: state.queryType,
-  initialRunComplete: state.initialRunComplete
+  queryType: state.queryType
 });
 
 export default connect(mapStateToProps)(App);

@@ -3,6 +3,11 @@ fieldset {
 }
 
 .form-container{
-  text-align: center;
+  text-align: left;
   font-size:115%;
+  margin-left: 3rem;
+}
+
+.form-container, p {
+  margin-top: 1rem;
 }

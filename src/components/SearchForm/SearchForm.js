@@ -45,6 +45,7 @@ export class SearchForm extends React.Component {
             </label>
           </fieldset>
         </form>
+        <em><p>Click on the circles to learn more about each person</p></em>
       </div>
     );
   }

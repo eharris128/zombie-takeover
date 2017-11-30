@@ -4,7 +4,7 @@
 
 .container {
   position: absolute;
-  top: 800px;
+  top: 870px;
   width: 100vw;
   height: 500px;
   margin-left: 50px;
@@ -41,4 +41,8 @@
 
 .mapboxgl-popup-content {
   text-align: center;
+}
+
+.hidden {
+  display: none;
 }
