@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
+## [Zombie Dashboard] (https://sleepy-earth-89207.herokuapp.com/)
+
 ## Quick Overview
 
 The goal of this project is to create a react based frontend webpage that displays critical information in a visually appealing and functional way.
@@ -35,17 +37,3 @@ walker(red)
 
 ## Bonus
 A mapbox map displaying all the "people" from walkers.js
-
-
-#Deployment
-
-https://blog.heroku.com/deploying-react-with-zero-configuration
-
-Create a branch and deploy to Heroku. Requires Heroku CLI.
-
-heroku create -b https://github.com/mars/create-react-app-buildpack.git
-
-git push heroku master
-
-heroku open
-
