@@ -74,3 +74,68 @@
   max-width: 720px;
   border-radius: 15px;
 }
+
+th,
+td {
+  padding-left: 0.5rem;
+}
+
+table {
+  margin: 2rem auto 2rem auto;
+  text-align: left;
+  border-collapse: separate;
+  border-spacing: 0 5px;
+}
+
+.dead,
+.walker,
+.bitten,
+.human {
+  background-color: white;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  width: 100px;
+  text-align: center;
+}
+
+.dead {
+  border: 2px solid black;
+}
+
+.walker {
+  border: 2px solid red;
+}
+
+.bitten {
+  border: 2px solid #aaaf6b;
+}
+
+.human {
+  border: 2px solid green;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.table-body-row {
+  border-top: 0.1px solid gray;
+  border-bottom: 0.1px solid gray;
+}
+
+thead {
+  border-bottom: 2px solid gray;
+  background-color: #f2f2f2;
+  font-size: 120%;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.age {
+  width: 100px;
+}
+
+.name {
+  width: 250px;
+}
