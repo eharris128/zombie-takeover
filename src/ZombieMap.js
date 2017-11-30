@@ -13,10 +13,37 @@ const Map = ReactMapboxGl({
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZWNoYXJyaXMxMjgiLCJhIjoiY2phbGd3MThsMnMwODMycnpibjI0cWxnZiJ9._O6xQrMmwIYCR9BCUX_2aA";
 
-
 const mapStyle = {
   height: "50vh",
   width: "50vw"
+};
+
+var geojson = {
+  type: "FeatureCollection",
+  features: [
+    {
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [-77.032, 38.913]
+      },
+      properties: {
+        title: "Mapbox",
+        description: "Washington, D.C."
+      }
+    },
+    {
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [-122.414, 37.776]
+      },
+      properties: {
+        title: "Mapbox",
+        description: "San Francisco, California"
+      }
+    }
+  ]
 };
 
 export default class ZombieMap extends React.Component {
@@ -26,14 +53,20 @@ export default class ZombieMap extends React.Component {
       style: "mapbox://styles/mapbox/streets-v9"
     });
     map.addControl(new mapboxgl.NavigationControl());
+    geojson.features.forEach(function(marker) {
+      var el = document.createElement("div");
+      el.className = "marker";
+      new mapboxgl.Marker(el).setLngLat(marker.geometry.coordinates)  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+  .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>')).addTo(map);
+    });
   }
-  
-  sortsZombieCoordinates(zombies) {
-    let zombieCoordinates = zombies.map((item, index) => (
-      <Feature key={index} coordinates={[item.longitude, item.latitude]} />
-    ));
-    return zombieCoordinates;
-  }
+
+  // sortsZombieCoordinates(zombies) {
+  //   let zombieCoordinates = zombies.map((item, index) => (
+  //     <Feature key={index} coordinates={[item.longitude, item.latitude]} />
+  //   ));
+  //   return zombieCoordinates;
+  // }
 
   render() {
     const style = {
@@ -44,7 +77,6 @@ export default class ZombieMap extends React.Component {
     };
     const zombieProps = this.props.zombieData;
     return (
-      // For troubleshooting zombie marker: center={[-44.648438,68.966279]}
       <div>
         {/* <Map
           zoom={[1]}

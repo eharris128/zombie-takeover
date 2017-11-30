@@ -1,7 +1,13 @@
-.walker-location {
-  color: red;
+.marker {
+  background-color:red;
+  background-size: cover;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
-/* .mapboxgl-missing-css {
-  display: none;
-} */
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
