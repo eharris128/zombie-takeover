@@ -1,13 +1,40 @@
+<<<<<<< HEAD
 .marker {
   background-color:red;
   background-size: cover;
   width: 15px;
   height: 15px;
+=======
+.mapboxgl-missing-css {
+  display: none;
+}
+.container {
+  position: absolute;
+  top: 500px;
+  width: 100vw;
+  height: 500px;
+  margin-left: 50px;
+}
+.marker {
+  background-color: red;
+  background-size: cover;
+  width: 45px;
+  height: 45px;
+>>>>>>> feature/map
   border-radius: 50%;
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 .mapboxgl-popup-content {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
+=======
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+>>>>>>> feature/map
 }

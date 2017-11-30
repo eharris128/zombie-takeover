@@ -4,12 +4,14 @@ import "./App.css";
 import walkers from "./data/walkers";
 import ZombieMap from "./ZombieMap";
 
-class App extends Component {
+export default class App extends Component {
   concatName(firstName, lastName) {
     let completeName = firstName + " " + lastName;
     return completeName;
   }
-
+  passZombieDataToParent(zombies) {
+    this.props.callbackFromParent(zombies);
+  }
   render() {
     let zombies = [];
     for (let i = 0; i < walkers.length; i++) {
@@ -30,7 +32,7 @@ class App extends Component {
         <th>{item.company.toLowerCase()}</th>
       </tr>
     ));
-
+    this.passZombieDataToParent(zombies);
     return (
       <div className="App">
         <header className="App-header">
@@ -51,12 +53,13 @@ class App extends Component {
             <tbody>{walkerData}</tbody>
           </table>
         </div>
+<<<<<<< HEAD
         <div id="map">
           <ZombieMap zombieData={zombies} />
         </div>
+=======
+>>>>>>> feature/map
       </div>
     );
   }
 }
-
-export default App;
